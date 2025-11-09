@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Илья и Виктория Манжос — Приглашение</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(to bottom right, #fff8f0, #f8e1e1);
+      color: #3b2f2f;
+      text-align: center;
+      overflow-x: hidden;
+    }header {
+  padding: 100px 20px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
+  border-bottom: 2px solid #e4c2c2;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.3em;
+}
+
+h2 {
+  font-size: 1.5em;
+  color: #a66;
+  margin-top: 0;
+}
+
+section {
+  margin: 40px auto;
+  max-width: 400px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.options, .drinks {
+  margin: 10px 0;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background-color: #a66;
+  color: white;
+  font-size: 1.1em;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #8b4d4d;
+}
+
+footer {
+  margin-top: 40px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+audio {
+  display: none;
+}
+
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1448c34d93.mp3?filename=romantic-inspiration-11221.mp3" type="audio/mpeg">
+  </audio>  <header>
+    <h1>Илья и Виктория Манжос</h1>
+    <h2>10 октября 2026 года</h2>
+    <p>Каждое “да” рождает историю, а каждая история начинается с любви ❤️</p>
+  </header>  <section>
+    <label>Напишите Ваши ФИО</label>
+    <input type="text" id="fio" placeholder="ФИО"><div class="options">
+  <label>Сможете ли присутствовать на нашем торжестве?</label>
+  <label><input type="radio" name="presence" value="Я с удовольствием приду"> Я с удовольствием приду</label>
+  <label><input type="radio" name="presence" value="Буду со своей парой"> Буду со своей парой</label>
+  <label><input type="radio" name="presence" value="К сожалению, не смогу присутствовать"> К сожалению, не смогу присутствовать</label>
+  <label><input type="radio" name="presence" value="Сообщу позже"> Сообщу позже</label>
+</div>
+
+<div class="drinks">
+  <label>Что предпочитаете из напитков?</label>
+  <label><input type="checkbox" value="Шампанское"> Шампанское</label>
+  <label><input type="checkbox" value="Вино белое"> Вино белое</label>
+  <label><input type="checkbox" value="Вино красное"> Вино красное</label>
+  <label><input type="checkbox" value="Вино розовое"> Вино розовое</label>
+  <label><input type="checkbox" value="Мартини коктейль"> Мартини коктейль</label>
+  <label><input type="checkbox" value="Водка"> Водка</label>
+  <label><input type="checkbox" value="Безалкогольный напиток"> Безалкогольный напиток</label>
+</div>
+
+<button onclick="sendToWhatsApp()">Отправить</button>
+
+  </section>  <footer>
+    <p>С любовью, Илья и Виктория 💞</p>
+  </footer>  <script>
+    function sendToWhatsApp() {
+      const fio = document.getElementById('fio').value.trim();
+      const presence = document.querySelector('input[name="presence"]:checked');
+      const drinks = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(el => el.value);
+
+      let message = `Приглашение от Ильи и Виктории Манжос%0A`;
+      message += fio ? `Гость: ${fio}%0A` : '';
+      message += presence ? `Ответ: ${presence.value}%0A` : '';
+      message += drinks.length ? `Напитки: ${drinks.join(', ')}%0A` : '';
+
+      const phone = '+79991234567';
+      const url = `https://wa.me/${phone}?text=${message}`;
+      window.open(url, '_blank');
+    }
+  </script></body>
+</html>
